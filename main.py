@@ -1,6 +1,7 @@
 '''
 To-Do List:
     draw rectangles and write names on pics
+    log people into database
     implement clustering
 '''
 
