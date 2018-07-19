@@ -7,14 +7,14 @@ def id_to_faces(descriptor_database, descriptor, diff=0.01):
     Parameters
     ----------
         descriptor_database : DescriptorDatabase
-            A group of descriptors for faces, of shape (N, 128)
+            A database of descriptors for faces, which can be turned into a dictionary
         descriptor: np.ndarray
             A descriptor for a face, of shape (128,)
         diff : float
             A number representing the maximum allowed difference
     Returns
     -------
-        face : type undetermined
+        face : String
             Returns who the face belongs to
     """
     descriptor_database.load()
