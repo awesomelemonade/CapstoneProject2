@@ -11,7 +11,7 @@ from PIL import Image
 def camera_to_descriptor():
     pic = take_picture()
     load_dlib_models()
-    return make_descriptor(pic)
+    return make_descriptor(pic[np.newaxis, :, :, :])
 
 def make_descriptor(list_of_arr):
     for arr in list_of_arr:
