@@ -1,5 +1,6 @@
 import databasing as db
 import Camera_to_Descriptor as camdes
+import id_to_faces as idf
 import clustering
 
 database = db.DescriptorDatabase('database.txt')
