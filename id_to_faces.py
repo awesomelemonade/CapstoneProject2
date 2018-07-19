@@ -22,4 +22,7 @@ def id_to_faces(descriptor_database, descriptor, diff=0.01):
     counter = np.zeros(len(database.keys()))
     for d in range(len(names)):
         counter[d] = np.sqrt(np.sum((database[names[d]] - descriptor) ** 2))
-    return names[np.argmin(counter)]
+    if np.amin(counter) < diff:
+        return names[np.argmin(counter)]
+    else:
+        return "???"
