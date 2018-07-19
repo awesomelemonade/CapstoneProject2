@@ -26,8 +26,7 @@ def make_descriptor(list_of_arr):
         descriptor = np.array(descriptor)
         return descriptor
 
-def file_to_descriptor():
-    folder = "../Pictures"
+def file_to_descriptor(folder):
     list_of_arr = []
     for pic in folder:
         picture = Image.open(pic)
