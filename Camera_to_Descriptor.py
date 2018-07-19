@@ -14,17 +14,18 @@ def camera_to_descriptor():
     return make_descriptor(pic[np.newaxis, :, :, :])
 
 def make_descriptor(list_of_arr):
+    main_descriptor = []
     for arr in list_of_arr:
         face_detect = models["face detect"]
         face_rec_model = models["face rec"]
         shape_predictor = models["shape predict"]
-        detections = list(face_detect(arr))
         descriptor = []
+        detections = list(face_detect(arr))
         for detection in detections:
             shape = shape_predictor(arr,detection)
             descriptor.append(np.array(face_rec_model.compute_face_descriptor(arr, shape)))
         descriptor = np.array(descriptor)
-        return descriptor
+    return main_descriptor
 
 def file_to_descriptor(folder):
     list_of_arr = []
