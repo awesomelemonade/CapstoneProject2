@@ -16,7 +16,6 @@ from dlib_models import download_model, download_predictor, load_dlib_models
 #download_model()
 #download_predictor()
 from dlib_models import models
-from PIL import Image
 
 database = db.DescriptorDatabase('database.txt')
 
