@@ -1,12 +1,14 @@
 import matplotlib.pyplot as plt
 from camera import take_picture
 import numpy as np
+import os
 from dlib_models import download_model, download_predictor, load_dlib_models
 download_model()
 download_predictor()
+load_dlib_models()
 from dlib_models import models
-from PIL import Image
-
+import cv2
+from skimage import io
 
 def camera_to_descriptor():
     pic = take_picture()
@@ -24,12 +26,14 @@ def make_descriptor(list_of_arr):
         for detection in detections:
             shape = shape_predictor(arr,detection)
             descriptor.append(np.array(face_rec_model.compute_face_descriptor(arr, shape)))
-        descriptor = np.array(descriptor)
-    return main_descriptor
+        main_descriptor.append(np.array(descriptor))
+    return main_descriptor, detections
 
 def file_to_descriptor(folder):
     list_of_arr = []
-    for pic in folder:
-        picture = Image.open(pic)
-        list_of_arr.append(np.array(pic))
+    for pic in os.listdir(folder):
+        if pic == folder + '/.DS_Store':
+            continue
+        picture = io.imread(folder + '/' + pic)
+        list_of_arr.append(np.array(picture))
     return make_descriptor(list_of_arr)
