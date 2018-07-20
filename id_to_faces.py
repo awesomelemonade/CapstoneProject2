@@ -19,6 +19,7 @@ def id_to_faces(descriptor_database, descriptor, diff=0.01):
     """
     descriptor_database.load()
     database = descriptor_database.dictionary
+    names = list(database.keys())
     counter = np.zeros(len(database.keys()))
     for d in range(len(names)):
         counter[d] = np.sqrt(np.sum((database[names[d]] - descriptor) ** 2))

@@ -12,7 +12,7 @@ def cluster(images, descriptors, iterations):
 		# Pick a random node
 		node = random.randint(n)
 		weights = {}
-		for i in range(n)
+		for i in range(n):
 			if not i == node:
 				weights[types[i]] = weights.get(types[i], 0) + 1/distanceSquared(descriptors[node], descriptors[i])
 		max_weight = max(weights.values())

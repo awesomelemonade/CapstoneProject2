@@ -6,16 +6,14 @@ class DescriptorDatabase:
 		"""Initializes with a filename for the database to store to
 		Parameters
 		----------
-			filename: String
-				A String representing the file that it is supposed to store to
+		filename: String
+		A String representing the file that it is supposed to store to
 		"""
 		self.filename = filename;
 		self.dictionary = {}
 	def put(self, name, descriptor):
 		"""Puts a pair of name and average descriptor into the dictionary"""
-		if key not in self.dictionary:
-			self.dictionary[name] = []
-		self.dictionary[name].append(descriptor)
+		self.dictionary[name] = descriptor
 	def get(self, name):
 		"""Retrieves value based off key"""
 		return self.dictionary.get(name, [])
@@ -29,14 +27,13 @@ class DescriptorDatabase:
 			self.dictionary = pickle.load(file)
 
 def get_avg_descriptor(descriptors):
-    """
-    Parameters
-    ----------
-        descriptors: List
-            List of descriptors for one person
-    Returns
-    -------
-        avg_descriptor: np array
-            Average descriptor
-    """
-    return np.mean(np.vstack(tuple(descriptors)), axis=0)
+	"""
+	Parameters
+	----------
+	    descriptors: List
+	        List of descriptors for one person
+	Returns
+	-------
+	    avg_descriptor: np array
+	        Average descriptor"""
+	return np.mean(np.vstack(tuple(descriptors)), axis=0)

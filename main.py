@@ -25,12 +25,12 @@ def log_person(name, folder_path):
     Parameters:
     name - string
     folder_path - string
-        path to folder with images
-    '''
+        path to folder with images'''
     list_of_arr = camdes.file_to_descriptor(folder_path)
     descriptors = [descriptor for arr in list_of_arr for descriptor in arr]
     avg_des = db.get_avg_descriptor(descriptors)
     database.put(name, avg_des)
+    database.save()
 
 def labelling():
     '''
@@ -38,9 +38,10 @@ def labelling():
     '''
     pic = take_picture()
     load_dlib_models()
-    list_of_arr = make_descriptor(pic[np.newaxis, :, :, :])
+    list_of_arr = camdes.make_descriptor(pic[np.newaxis, :, :, :])
     descriptors = [descriptor for arr in list_of_arr for descriptor in arr]
     names = []
     for descriptor in descriptors:
         names.append(idf.id_to_faces(database, descriptor))
+    return names
     #someone draw the rectangles and labels kthxbye
