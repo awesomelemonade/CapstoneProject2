@@ -29,7 +29,7 @@ def cluster(descriptors, iterations):
 		for i in range(n):
 			if not i == node:
 				dist = distanceSquared(descriptors[node], descriptors[i])
-				if dist < 0.4:
+				if dist < 0.3:
 					weights[types[i]] = weights.get(types[i], 0) + 1/dist
 		max_weight = max(weights.values())
 		candidates = [key for key, value in weights.items() if value == max_weight]
@@ -61,9 +61,9 @@ load_dlib_models()
 
 from dlib_models import models
 
-data_folder = "./img_align_celeba/"
-label_file = "identity_CelebA.txt"
-format_string = "{0:06d}.jpg"
+data_folder = "./our_data/"
+label_file = "./our_data/identity.txt"
+format_string = "{}.JPG"
 
 dictionary = getDictionary(label_file)
 
@@ -118,11 +118,13 @@ for t in types.values():
 
 import matplotlib.pyplot as plt
 
-fig, axs = plt.subplots(nrows=40, ncols=len(groups))
+fig, axs = plt.subplots(nrows=5, ncols=len(groups))
 
 for index, group in enumerate(groups):
 	for index2, file in enumerate(group):
-		axs[index2, index].imshow(images[file])
+		if index2 < 5:
+			axs[index2, index].imshow(images[file])
+			axs[index2, index].axis('off')
 """data = []
 for i in range(len(images)):
 	for j in range(i + 1, len(images)):
