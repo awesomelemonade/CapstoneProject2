@@ -15,8 +15,10 @@ class DescriptorDatabase:
 		"""Puts a pair of name and average descriptor into the dictionary"""
 		self.dictionary[name] = descriptor
 	def get(self, name):
-		"""Retrieves value based off key"""
-		return self.dictionary.get(name, [])
+		"""Retrieves descriptor based off name"""
+		return self.dictionary[name]
+	def delete(self, name):
+		self.dictionary.pop(name, None)
 	def save(self):
 		"""Saves dictionary into file"""
 		with open(self.filename, mode="wb") as file:
