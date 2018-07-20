@@ -2,7 +2,7 @@ import numpy as np
 from collections import Counter
 import databasing
 
-def id_to_faces(descriptor_database, descriptor, diff=0.35):
+def id_to_faces(descriptor_database, descriptor, diff=0.4):
     """Identifies a face from the database when given a descriptor
     Parameters
     ----------

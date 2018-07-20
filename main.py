@@ -47,10 +47,10 @@ def labelling():
         names.append(idf.id_to_faces(database, descriptor))
     print(names)
     fig, ax = plt.subplots()
-    ax.imshow(pic)
     for i, detection in enumerate(detections):
         print(detection)
         draw_labels(ax, fig, detection, names[i])
+    ax.imshow(pic)
 
 def draw_labels(ax, fig, rect, text):
     # Get the landmarks/parts for the face in box d.
