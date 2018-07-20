@@ -1,4 +1,6 @@
 __pycache__/*
 **/*.ipynb
 **/*.DS_Store
-./database.txt
+database.txt
+identity_CelebA.txt
+/img_align_celeba/*
