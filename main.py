@@ -17,8 +17,10 @@ from dlib_models import download_model, download_predictor, load_dlib_models
 #download_model()
 #download_predictor()
 from dlib_models import models
+from matplotlib.patches import Rectangle
 
 database = db.DescriptorDatabase('database.txt')
+database.load()
 
 def log_person(name, folder_path):
     '''
@@ -26,7 +28,7 @@ def log_person(name, folder_path):
     name - string
     folder_path - string
         path to folder with images'''
-    list_of_arr = camdes.file_to_descriptor(folder_path)
+    list_of_arr, detections = camdes.file_to_descriptor(folder_path)
     descriptors = [descriptor for arr in list_of_arr for descriptor in arr]
     avg_des = db.get_avg_descriptor(descriptors)
     database.put(name, avg_des)
@@ -38,10 +40,21 @@ def labelling():
     '''
     pic = take_picture()
     load_dlib_models()
-    list_of_arr = camdes.make_descriptor(pic[np.newaxis, :, :, :])
+    list_of_arr, detections = camdes.make_descriptor(pic[np.newaxis, :, :, :])
     descriptors = [descriptor for arr in list_of_arr for descriptor in arr]
     names = []
     for descriptor in descriptors:
         names.append(idf.id_to_faces(database, descriptor))
-    return names
-    #someone draw the rectangles and labels kthxbye
+    print(names)
+    fig, ax = plt.subplots()
+    ax.imshow(pic)
+    for i, detection in enumerate(detections):
+        print(detection)
+        draw_labels(ax, fig, detection, names[i])
+
+def draw_labels(ax, fig, rect, text):
+    # Get the landmarks/parts for the face in box d.
+    # Draw the face landmarks on the screen.
+    rectangle = Rectangle((rect.left(), rect.top()), rect.width(), rect.height(), linewidth = 1, edgecolor = 'b', facecolor = 'none')
+    ax.add_patch(rectangle)
+    ax.text(rect.center().x, rect.center().y, text, ha = "center", va = "center", color="#FFFFFF")
