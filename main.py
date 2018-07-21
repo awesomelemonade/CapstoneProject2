@@ -9,6 +9,7 @@ import databasing as db
 import Camera_to_Descriptor as camdes
 import id_to_faces as idf
 import clustering
+import cv2
 
 import matplotlib.pyplot as plt
 from camera import take_picture
