@@ -5,7 +5,7 @@ from PIL import Image
 def getImage(filename):
 	return np.array(Image.open(filename))
 def getDictionary(filename):
-	dictionary = {}	
+	dictionary = {}
 	with open(filename) as lines:
 		for line in lines:
 			split = line.split()
@@ -61,8 +61,8 @@ load_dlib_models()
 
 from dlib_models import models
 
-data_folder = "./our_data/"
-label_file = "./our_data/identity.txt"
+data_folder = "./"
+label_file = "/database.txt"
 format_string = "{}.JPG"
 
 dictionary = getDictionary(label_file)
@@ -113,8 +113,8 @@ for t in types.values():
 		groups.append([key for key, value in types.items() if value == t])
 		tracked.append(t)
 
-%matplotlib notebook
-%matplotlib notebook
+#uncomment for jupyter notebook
+#%matplotlib notebook
 
 import matplotlib.pyplot as plt
 

@@ -5,10 +5,10 @@ To-Do List:
     implement clustering
 '''
 
-import databasing as db
-import Camera_to_Descriptor as camdes
-import id_to_faces as idf
-import clustering
+import face_rec.databasing as db
+import face_rec.Camera_to_Descriptor as camdes
+import face_rec.id_to_faces as idf
+#import face_rec.clustering
 import cv2
 
 import matplotlib.pyplot as plt
@@ -46,12 +46,13 @@ def labelling():
     names = []
     for descriptor in descriptors:
         names.append(idf.id_to_faces(database, descriptor))
-    print(names)
-    fig, ax = plt.subplots()
-    for i, detection in enumerate(detections):
-        print(detection)
-        draw_labels(ax, fig, detection, names[i])
-    ax.imshow(pic)
+    #print(names)
+    #fig, ax = plt.subplots()
+    #for i, detection in enumerate(detections):
+    #    print(detection)
+    #    draw_labels(ax, fig, detection, names[i])
+    #ax.imshow(pic)
+    return names
 
 def draw_labels(ax, fig, rect, text):
     # Get the landmarks/parts for the face in box d.

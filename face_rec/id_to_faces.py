@@ -1,6 +1,6 @@
 import numpy as np
 from collections import Counter
-import databasing
+import face_rec.databasing
 
 def id_to_faces(descriptor_database, descriptor, diff=0.4):
     """Identifies a face from the database when given a descriptor
@@ -23,7 +23,6 @@ def id_to_faces(descriptor_database, descriptor, diff=0.4):
     counter = np.zeros(len(database.keys()))
     for d in range(len(names)):
         counter[d] = np.sqrt(np.sum((database[names[d]] - descriptor) ** 2))
-    print(counter)
     if np.amin(counter) < diff:
         return names[np.argmin(counter)]
     else:
