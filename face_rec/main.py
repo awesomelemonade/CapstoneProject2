@@ -23,14 +23,17 @@ from matplotlib.patches import Rectangle
 database = db.DescriptorDatabase('database.txt')
 database.load()
 
-def log_person(name, folder_path):
+def log_person(name):
     '''
     Parameters:
     name - string
     folder_path - string
         path to folder with images'''
-    list_of_arr, detections = camdes.file_to_descriptor(folder_path)
-    descriptors = [descriptor for arr in list_of_arr for descriptor in arr]
+    #list_of_arr, detections = camdes.file_to_descriptor(folder_path)
+    #descriptors = [descriptor for arr in list_of_arr for descriptor in arr]
+    descriptors = []
+    for i in range(5):
+        descriptors += [descriptor for arr in camdes.camera_to_descriptor()[0] for descriptor in arr]
     avg_des = db.get_avg_descriptor(descriptors)
     database.put(name, avg_des)
     database.save()
