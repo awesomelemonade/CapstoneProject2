@@ -1,0 +1,12 @@
+setup.py
+face_rec/Camera_to_Descriptor.py
+face_rec/__init__.py
+face_rec/clustering.py
+face_rec/databasing.py
+face_rec/draw_labels.py
+face_rec/id_to_faces.py
+face_rec/main.py
+face_rec.egg-info/PKG-INFO
+face_rec.egg-info/SOURCES.txt
+face_rec.egg-info/dependency_links.txt
+face_rec.egg-info/top_level.txt
