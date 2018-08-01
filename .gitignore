@@ -4,4 +4,4 @@ __pycache__/*
 database.txt
 identity_CelebA.txt
 /img_align_celeba/*
-/face_rec.egg-info/
+/face_rec.egg-info/*
